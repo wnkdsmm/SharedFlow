@@ -73,11 +73,22 @@ fun MainScreen(
         }
     }
 }
+
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     SharedFlowTheme {
-        val viewModel: DemoViewModel = viewModel()
-        MainScreen(sharedFlow = viewModel.sharedFlow)
+        val testMessages = remember { mutableStateListOf(1, 2, 3, 4, 5) }
+
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(testMessages) {
+                Text(
+                    "Collected Value = $it",
+                    style = MaterialTheme.typography.headlineLarge,
+                    modifier = Modifier.padding(5.dp)
+                )
+            }
+        }
     }
 }
